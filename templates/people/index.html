@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1>People</h1>
+</div>
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= newPeoplePath() %>" class="btn btn-primary">Create New Person</a></li>
+</ul>
+
+<table class="table table-striped">
+  <thead>
+  <th>FirstName</th>
+    <th>LastName</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>&nbsp;</th>
+  </thead>
+  <tbody>
+    <%= for (person) in people { %>
+      <tr>
+      <td><%= person.FirstName %></td>
+        <td><%= person.LastName %></td>
+        <td><%= person.Email %></td>
+        <td><%= person.Username %></td>
+        <td>
+          <div class="pull-right">
+            <a href="<%= personPath({ person_id: person.ID }) %>" class="btn btn-info">View</a>
+            <a href="<%= editPersonPath({ person_id: person.ID }) %>" class="btn btn-warning">Edit</a>
+            <a href="<%= personPath({ person_id: person.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+          </div>
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <%= paginator(pagination) %>
+</div>
